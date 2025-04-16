@@ -8,8 +8,8 @@ def lambda_handler(event, context):
             fib = int(event['body'])
             out = fibonacci(fib)
         except ValueError:
-            out = "Post body must be an integer"
-    return {"statusCode": 200, "body": f"{out}"}
+            out = "Post body must be an integer, FOOL!"
+    return {"statusCode": 200, "body": f"{out} is the answer"}
 
 def fibonacci(n):
     """Iterative Fibonacci algorithm"""
