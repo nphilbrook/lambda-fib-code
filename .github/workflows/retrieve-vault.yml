@@ -32,4 +32,4 @@ jobs:
             ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
       - name: verify secret was retrieved
         run: |
-          echo $SECRET_BAR
+          echo $SECRET_BAR | base64
