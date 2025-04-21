@@ -24,7 +24,7 @@ jobs:
           role: gha-workflow
           method: jwt
           secrets: |
-              kv/data/foo bar | SECRET_BAR ;
+              prod/kv/data/foo bar | SECRET_BAR ;
       - name: Revoke Vault Token
         if: always()
         run: |
