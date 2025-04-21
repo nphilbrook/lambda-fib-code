@@ -18,8 +18,8 @@ jobs:
         id: import-secrets
         uses: hashicorp/vault-action@v2
         with:
-          url: ${{ var.VAULT_ADDR }}
-          namespace: ${{ var.VAULT_NAMESPACE }}
+          url: ${{ vars.VAULT_ADDR }}
+          namespace: ${{ vars.VAULT_NAMESPACE }}
           path: jwt-github
           role: gha-workflow
           method: jwt
@@ -29,7 +29,7 @@ jobs:
         if: always()
         run: |
           curl -X POST -sv -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
-            ${{ var.VAULT_ADDR }}/v1/auth/token/revoke-self
+            ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
       - name: verify secret was retrieved
         run: |
           echo $SECRET_BAR
