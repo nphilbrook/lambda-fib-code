@@ -23,6 +23,7 @@ jobs:
           path: jwt-github
           role: gha-workflow
           method: jwt
+          exportToken: true
           secrets: |
               prod/kv/data/foo bar | SECRET_BAR ;
       - name: verify secret was retrieved
@@ -33,5 +34,4 @@ jobs:
         run: |
           curl -X POST -sv --fail-with-body \
             -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
-            -H "X-Vault-Namespace: ${{vars.VAULT_NAMESPACE}}" \
             ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
