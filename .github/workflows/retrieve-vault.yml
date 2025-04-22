@@ -28,7 +28,8 @@ jobs:
       - name: Revoke Vault Token
         if: always()
         run: |
-          curl -X POST -sv -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
+          curl -X POST -sv --fail-with-body \
+            -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
             ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
       - name: verify secret was retrieved
         run: |
