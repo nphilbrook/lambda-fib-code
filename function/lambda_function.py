@@ -2,7 +2,7 @@
 def lambda_handler(event, context):
     out = ""
     if not 'body' in event or event['body'] is None:
-        out = "Post body required (must be an integer)"
+        out = "Post body required (must be an integer, fool!)"
     else:
         try:
             fib = int(event['body'])
