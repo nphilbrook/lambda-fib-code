@@ -12,10 +12,10 @@ jobs:
       contents: 'read'
       id-token: 'write'
     runs-on: self-hosted
-    name: Run Step 1
+    name: Retrieve Vault Secret
     steps:
       - name: Retrieve Vault Secret
-        id: import-secrets
+        id: retrieve-secrets
         uses: hashicorp/vault-action@v2
         with:
           url: ${{ vars.VAULT_ADDR }}
