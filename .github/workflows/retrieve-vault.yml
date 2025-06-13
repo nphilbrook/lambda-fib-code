@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Retrieve Vault Secret
         id: retrieve-secrets
-        uses: hashicorp/vault-action@v2
+        uses: hashicorp/vault-action@v3
         with:
           url: ${{ vars.VAULT_ADDR }}
           namespace: ${{ vars.VAULT_NAMESPACE }}
