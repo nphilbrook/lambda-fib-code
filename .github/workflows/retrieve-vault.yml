@@ -21,7 +21,7 @@ jobs:
           url: ${{ vars.VAULT_ADDR }}
           namespace: ${{ vars.VAULT_NAMESPACE }}
           path: jwt-github
-          role: "gha-test-addditional"
+          role: "gha-workflow"
           method: jwt
           exportToken: true
           secrets: |
