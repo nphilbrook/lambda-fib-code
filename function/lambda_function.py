@@ -8,7 +8,7 @@ def lambda_handler(event, context):
             fib = int(event['body'])
             out = fibonacci(fib)
         except ValueError:
-            out = "Post body must be an integer, WRONG NAMESPACE"
+            out = "Post body must be an integer, FOOL"
     return {"statusCode": 200, "body": f"{out}"}
 
 def fibonacci(n):
