@@ -2,7 +2,7 @@ name: retrieve-vault
 on:
   push:
     branches:
-      - main
+      - '*'
     paths-ignore:
       - 'terraform/**'
       - '*.md'
