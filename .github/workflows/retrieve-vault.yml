@@ -29,12 +29,12 @@ jobs:
       - name: verify secret was retrieved
         run: |
           echo $SECRET_BAR | base64
-      - name: Revoke Vault Token
-        if: always()
-        run: |
-          curl -X POST -sv --fail-with-body \
-            -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
-            ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
+#      - name: Revoke Vault Token
+#        if: always()
+#        run: |
+#          curl -X POST -sv --fail-with-body \
+#            -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
+#            ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
   get-additional-secret:
     permissions:
       contents: 'read'
