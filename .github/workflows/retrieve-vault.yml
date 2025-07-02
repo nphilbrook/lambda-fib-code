@@ -35,3 +35,31 @@ jobs:
           curl -X POST -sv --fail-with-body \
             -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
             ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
+  get-additional-secret:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    runs-on: self-hosted
+    name: Retrieve Vault Secret ELECTRIC BOOGALOO
+    steps:
+      - name: Retrieve Vault Secret
+        id: retrieve-secrets-additional
+        uses: hashicorp/vault-action@v3
+        with:
+          url: ${{ vars.VAULT_ADDR }}
+          namespace: ${{ vars.VAULT_NAMESPACE }}
+          path: jwt-github
+          role: "gha-workflow"
+          method: jwt
+          exportToken: true
+          secrets: |
+              prod/kv/data/norf qux | SECRET_BAR ;
+      - name: verify secret was retrieved
+        run: |
+          echo $SECRET_BAR | base64
+      - name: Revoke Vault Token
+        if: always()
+        run: |
+          curl -X POST -sv --fail-with-body \
+            -H "X-Vault-Token: ${{ env.VAULT_TOKEN }}" \
+            ${{ vars.VAULT_ADDR }}/v1/auth/token/revoke-self
