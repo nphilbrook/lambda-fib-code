@@ -18,7 +18,7 @@ jobs:
         id: auth-token
         run: |
             export TOKEN=$(curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL")
-            echo $TOKEN | jq .value
+            echo $TOKEN | jq .value | base64
       - name: Retrieve Vault Secret
         id: retrieve-secrets
         uses: hashicorp/vault-action@v3
@@ -52,7 +52,7 @@ jobs:
         id: auth-token
         run: |
             export TOKEN=$(curl -sSL -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" "$ACTIONS_ID_TOKEN_REQUEST_URL")
-            echo $TOKEN | jq .value
+            echo $TOKEN | jq .value | base64
       - name: Retrieve Vault Secret
         id: retrieve-secrets-additional
         uses: hashicorp/vault-action@v3
