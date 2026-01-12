@@ -1,5 +1,12 @@
-To hit this API gateway:
+To hit this API gateway, you need AWS sig4 auth and you need to be me. Recent curl versions can do it:
 
-curl -X POST -d 5 https://<CHECK-WORKSPACE-OUTPUT>.execute-api.us-east-2.amazonaws.com/development/handler
+```
+curl --aws-sigv4 "aws:amz:us-east-2:execute-api" \
+  --user "$AWS_ACCESS_KEY_ID:$AWS_SECRET_ACCESS_KEY" \
+  -H "x-amz-security-token: $AWS_SESSION_TOKEN" \
+  -X POST \
+  https://<CHECK-WORKSPACE-OUTPUT>.execute-api.us-east-2.amazonaws.com/development/handler
+```
+
 
 To find the exact URL, check the workspace outputs.
